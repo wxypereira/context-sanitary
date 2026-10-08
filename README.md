@@ -2,135 +2,231 @@
   <img src="./assets/banner.jpeg" width="100%" alt="Context Sanitary Banner">
 </p>
 
-# Context Sanitary Skill
-
-> Garbage Collector de contexto e sincronizador de memória persistente para Agentes de IA.
+[English](README.md) | [Español](README.es-ES.md) | [Português](README.pt-BR.md)
 
 ---
 
-## ❓ Por que usar o Context Sanitary?
+# Context Sanitary Skill
 
-Durante conversas longas ou sessões intensas de desenvolvimento com Agentes de IA (como **Antigravity**, **OpenCode** e **Hermes**), a janela de contexto tende a ser degradada por:
-1. **Dumps Extensos de Terminal e Stack Traces Mortos:** Logs repetitivos que consomem milhares de tokens sem agregar valor à solução.
-2. **Alucinações por Excesso de Ruído:** O agente se perde ao tentar analisar comandos intermediários antigos de navegação.
-3. **Perda de Lições Aprendidas entre Sessões:** Erros que já foram corrigidos voltam a acontecer se o agente não salvar o aprendizado em memória persistente.
+> Context Garbage Collector and Persistent Memory Synchronizer for AI Agents.
 
-O **Context Sanitary** resolve isso atuando em **3 estágios automáticos**:
-- **Poda Heurística Algorítmica (Zero Tokens):** Limpa ruídos operacionais e trunca logs longos mantendo apenas a essência.
-- **Offload & Consulta à Memória Persistente:** Salva lições aprendidas (`[Erro ➔ Causa ➔ Solução]`) no seu **Obsidian**, **Holographic Memory**, **ai-memory**, **Honcho**, **Mem0** ou **Supermemory**.
-- **Checkpoint Estrito:** Injeta um marcador no histórico forçando o agente a ignorar mensagens passadas e focar unicamente no estado consolidado.
+## ❓ Why Use Context Sanitary?
+
+During long conversations or intensive development sessions with AI Agents (such as **Antigravity**, **OpenCode**, and **Hermes**), the context window degrades due to:
+
+1. **Extensive Terminal Dumps & Dead Stack Traces:** Repetitive logs consuming thousands of tokens without adding value to the solution.
+2. **Noise-Induced Hallucinations:** The agent gets confused analyzing old intermediate navigation commands.
+3. **Loss of Learned Lessons Across Sessions:** Previously fixed errors recur if the agent fails to save insights to persistent memory.
+
+**Context Sanitary** resolves this in **3 automated stages**:
+
+- **Algorithmic Heuristic Pruning (Zero Tokens):** Cleans operational noise and truncates long logs while preserving the essence.
+- **Persistent Memory Offload & Query:** Saves learned lessons (`[Error ➔ Cause ➔ Solution]`) to **Obsidian**, **Holographic Memory**, **ai-memory**, **Honcho**, **Mem0**, or **Supermemory**.
+- **Strict Checkpoint:** Injects a strict divider into history, forcing the agent to ignore past messages and focus solely on the consolidated state.
 
 ---
 
 ## 💡 About The Project
 
-**Context Sanitary** é uma Skill projetada para gerenciar e otimizar a janela de contexto de agentes de IA em workflows de longo prazo. Ela garante performance máxima, menor custo com tokens e zero perda de memória.
+**Context Sanitary** is a Skill designed to manage and optimize the context window of AI agents in long-running workflows. It ensures maximum performance, lower token costs, and zero memory loss.
 
-## 🧠 Suporte a Memória Persistente
+## 🧠 Persistent Memory Support
 
-| Provedor de Memória | Tipo / Local | Status da Integração | Descrição |
+| Memory Provider | Type / Location | Integration Status | Description |
 | --- | --- | --- | --- |
-| **`ai-memory`** (Akita) | Local (Wiki Markdown + SQLite) | 🟢 Nativo | Armazena em `~/.ai-memory/wiki/` para rastreamento Git. |
-| **`Obsidian`** | Local (Markdown Vault) | 🟢 Nativo | Anexa na nota `Knowledge/AI_Lessons.md` com tags de frontmatter. |
-| **`Holographic Memory`** | Local (Vetor Associativo / Hermes) | 🟢 Nativo | Registra em `~/.hermes/holographic_memory.json` com busca FTS5. |
-| **`Honcho`** | Cloud / Session Reasoning | 🟡 Stub / Experimental | Sincroniza estado no nível de Workspace/Session (`HONCHO_API_KEY`). |
-| **`Mem0`** | Cloud / Vector Store | 🟡 Stub / Experimental | Envia triplas de solução via REST API (`MEM0_API_KEY`). |
-| **`Supermemory`** | Cloud / Long-term Memory | 🟡 Stub / Experimental | Armazena contextos para consultas vetoriais de longo prazo (`SUPERMEMORY_API_KEY`). |
+| **`ai-memory`** (Akita) | Local (Wiki Markdown + SQLite) | 🟢 Native | Stores in `~/.ai-memory/wiki/` for Git tracking. |
+| **`Obsidian`** | Local (Markdown Vault) | 🟢 Native | Appends to `Knowledge/AI_Lessons.md` with frontmatter tags. |
+| **`Holographic Memory`** | Local (Associative Vector / Hermes) | 🟢 Native | Records in `~/.hermes/holographic_memory.json` with FTS5 search. |
+| **`Honcho`** | Cloud / Session Reasoning | 🟡 Stub / Experimental | Syncs state at Workspace/Session level (`HONCHO_API_KEY`). |
+| **`Mem0`** | Cloud / Vector Store | 🟡 Stub / Experimental | Sends solution triples via REST API (`MEM0_API_KEY`). |
+| **`Supermemory`** | Cloud / Long-term Memory | 🟡 Stub / Experimental | Stores contexts for long-term vector queries (`SUPERMEMORY_API_KEY`). |
 
 ## 🛠️ Tech Stack
 
 [![My Skills](https://skillicons.dev/icons?i=python,nodejs,bash,git)](https://skillicons.dev)
 
-- **Linguagem:** Python 3 (Script Helper) & Node.js Wrapper
-- **Gerenciadores de Pacotes:** `pip` / `pipx` & `npm` / `npx`
+- **Language:** Python 3 (Helper Script) & Node.js Wrapper
+- **Package Managers:** `pip` / `pipx` & `npm` / `npx`
 
-## 🧪 Resultado dos Testes
+## 🧪 Test Results
 
-O script de suporte conta com uma suíte autônoma de testes. Abaixo o resultado da execução de validação:
+The helper script includes an autonomous test suite. Below is the validation run output:
 
 ```bash
 $ python3 scripts/sanitary_purge.py --test-memory
 
---- Teste de Offload ---
+--- Offload Test ---
 {
-  "ai-memory": "Salvo em ~/.ai-memory/wiki/lesson_20261007_165206_856622.md",
-  "obsidian": "Anexado à nota Obsidian ~/ObsidianVault/Knowledge/AI_Lessons.md",
-  "holographic": "Gravado em memória associativa Holographic",
-  "honcho": "[Stub/Experimental] HONCHO_API_KEY não configurada (offload pendente)",
-  "mem0": "[Stub/Experimental] MEM0_API_KEY não configurada",
-  "supermemory": "[Stub/Experimental] SUPERMEMORY_API_KEY não configurada"
+  "ai-memory": "Saved to ~/.ai-memory/wiki/lesson_20261007_165206_856622.md",
+  "obsidian": "Appended to Obsidian note ~/ObsidianVault/Knowledge/AI_Lessons.md",
+  "holographic": "Recorded in associative Holographic Memory",
+  "honcho": "[Stub/Experimental] HONCHO_API_KEY not configured (offload pending)",
+  "mem0": "[Stub/Experimental] MEM0_API_KEY not configured",
+  "supermemory": "[Stub/Experimental] SUPERMEMORY_API_KEY not configured"
 }
 
---- Teste de Consulta ---
+--- Query Test ---
 [
-  "**Solução:** Utilizar sanitary_purge.py para truncar logs",
-  "[Obsidian] Utilizar sanitary_purge.py para truncar logs",
-  "[Holographic] Solução: Utilizar sanitary_purge.py para truncar logs"
+  "**Solution:** Use sanitary_purge.py to truncate logs",
+  "[Obsidian] Use sanitary_purge.py to truncate logs",
+  "[Holographic] Solution: Use sanitary_purge.py to truncate logs"
 ]
 ```
 
-## 🚀 Instalação & Getting Started
+---
 
-### Opção A: Instalação via `pip` (Python Standard)
+## 🚀 Installation & Getting Started
+
+### Option A: Install via `pip` (Python Standard)
+
+**1. Download / Install**
 ```bash
-# Instalação direta do repositório
 pip install git+https://github.com/wxypereira/context-sanitary.git
-
-# Ou instalação local editável
+# Or editable local install
 pip install -e .
 ```
 
-### Opção B: Instalação via `pipx` (Recomendado para CLI Isolado)
+**2. Practical Skill Test**
+```bash
+context-sanitary --test-checkpoint
+```
+
+**3. Validation**
+```bash
+context-sanitary --test-memory --memory all
+# Expect: all 6 providers listed (3 native OK, 3 stubs pending API keys)
+```
+
+**4. Removal / Cleanup**
+```bash
+pip uninstall context-sanitary
+# Removes the CLI entry points (context-sanitary, sanitary-purge)
+```
+
+---
+
+### Option B: Install via `pipx` (Recommended for Isolated CLI)
+
+**1. Download / Install**
 ```bash
 pipx install git+https://github.com/wxypereira/context-sanitary.git
 ```
 
-### Opção C: Instalação via `npm` / `npx` (Node.js)
+**2. Practical Skill Test**
 ```bash
-# Instalação Global via npm
+context-sanitary --test-checkpoint
+```
+
+**3. Validation**
+```bash
+context-sanitary --test-memory --memory all
+```
+
+**4. Removal / Cleanup**
+```bash
+pipx uninstall context-sanitary
+# Fully removes the isolated environment and CLI binaries
+```
+
+---
+
+### Option C: Install via `npm` / `npx` (Node.js)
+
+**1. Download / Install**
+```bash
+# Global install via npm
 npm install -g context-sanitary
 
-# Execução direta sem instalação via npx
+# Or direct run without install via npx
 npx context-sanitary --test-checkpoint
 ```
 
-### Opção D: Instalação como Skill de Agente (`.gemini` / `Antigravity` / `Claude`)
+**2. Practical Skill Test**
+```bash
+npx context-sanitary --test-checkpoint
+```
+
+**3. Validation**
+```bash
+npx context-sanitary --test-memory --memory all
+```
+
+**4. Removal / Cleanup**
+```bash
+npm uninstall -g context-sanitary
+# Removes global package and bin links
+```
+
+---
+
+### Option D: Install as Agent Skill (`.gemini` / `Antigravity` / `Claude`)
+
+**1. Download / Install**
 ```bash
 git clone https://github.com/wxypereira/context-sanitary.git
 cp -r context-sanitary ~/.gemini/config/skills/
 ```
 
-### Configurar Variáveis de Ambiente (Opcional):
-Copie `.env.example` para `.env` e configure os caminhos ou chaves de API caso utilize Obsidian, Honcho, Mem0 ou Supermemory.
+**2. Practical Skill Test**
+```bash
+# Inside an agent conversation:
+/context-sanitary --test-checkpoint
+```
+
+**3. Validation**
+```bash
+/context-sanitary --test-memory --memory all
+```
+
+**4. Removal / Cleanup**
+```bash
+rm -rf ~/.gemini/config/skills/context-sanitary
+# Removes the skill directory from the agent's config
+```
+
+---
+
+### Configure Environment Variables (Optional):
+
+Copy `.env.example` to `.env` and set paths or API keys if using Obsidian, Honcho, Mem0, or Supermemory.
 ```bash
 cp .env.example .env
 ```
 
+---
+
 ## 🎮 Basic Usage
 
-Execute no seu terminal ou dentro de uma conversa com o agente:
+Run in your terminal or inside an agent conversation:
 
-- `context-sanitary` (ou `/context-sanitary`) — Executa a poda algorítmica, realiza offload para a memória e injeta o Checkpoint.
-- `context-sanitary --memory obsidian` — Especifica um provedor de memória específico.
-- `context-sanitary --auto 80%` — Configura execução automática quando a janela atingir 80%.
-- `context-sanitary --no-auto` — Desativa o gatilho automático por porcentagem.
+- `context-sanitary` (or `/context-sanitary`) — Runs algorithmic pruning, offloads to memory, and injects the Checkpoint.
+- `context-sanitary --memory obsidian` — Targets a specific memory provider.
+- `context-sanitary --auto 80%` — Enables auto-execution when context window hits 80%.
+- `context-sanitary --no-auto` — Disables percentage-based auto-trigger.
+
+---
 
 ## 🤝 Contribute
 
-Contribuições são super bem-vindas! Siga os passos abaixo:
+Contributions are welcome! Follow these steps:
 
-1. Faça o Fork do projeto
-2. Crie uma branch para a sua feature (`git checkout -b feature/NovaMemoria`)
-3. Faça o commit das suas alterações (`git commit -m 'Add: Suporte a nova memória'`)
-4. Faça o push para a branch (`git push origin feature/NovaMemoria`)
-5. Abra um Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/NewMemory`)
+3. Commit your changes (`git commit -m 'Add: Support for new memory'`)
+4. Push to the branch (`git push origin feature/NewMemory`)
+5. Open a Pull Request
 
-## 👥 Créditos & Agradecimentos
+---
 
-Este projeto foi desenvolvido em Pair Programming com colaboração entre:
+## 👥 Credits & Acknowledgments
+
+This project was developed in Pair Programming with collaboration between:
 - **Antigravity** (Google DeepMind Team)
 - **OpenCode** (Muse Spark 1.3 Zen Agent)
+- **AI Model:** **Gemini 2.5 Pro** (Google DeepMind)
+
+---
 
 ## 📝 License
 
-Este projeto está sob a licença [MIT](./LICENSE).
+This project is licensed under the [MIT License](./LICENSE).

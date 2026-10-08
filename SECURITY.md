@@ -1,41 +1,30 @@
-# Política de Segurança — context-sanitary
+# Security Policy — context-sanitary
 
-## Versões suportadas
+## Supported Versions
 
-| Versão | Suporte            |
-| ------ | ------------------ |
-| 0.1.x  | 🟢 Suportada       |
-| < 0.1  | 🔴 Não suportada   |
+| Version | Supported          |
+| ------- | ------------------ |
+| 0.1.x   | 🟢 Supported       |
+| < 0.1   | 🔴 Not supported   |
 
-## Como reportar uma vulnerabilidade
+## Reporting a Vulnerability
 
-**Não abra issue pública para vulnerabilidades.** Prefira um canal privado:
+**Please open a GitHub Issue** using the provided "Security Vulnerability" issue template (or label the issue with `security` / `vulnerability`).
 
-1. Abra um issue privado ou contate os mantenedores (Antigravity + OpenCode)
-   com: descrição, passos de reprodução, impacto e versão afetada.
-2. Aguarde confirmação antes de divulgar. Prazo-alvo de resposta inicial:
-   5 dias úteis.
-3. Após correção e release, o reporte é creditado no `CHANGELOG.md`
-   (salvo pedido de anonimato).
+1. Open an issue on this repository, select the **Security Vulnerability** template (or add the `security` label), and include: description, reproduction steps, impact, and affected version.
+2. Maintainers will acknowledge within 5 business days.
+3. After fix and release, the report is credited in `CHANGELOG.md` (unless anonymity is requested).
 
-## Regras de segredos
+**Do not** send vulnerability details via email or private messages — use the GitHub Issue tracker with the security label so the process is transparent and auditable.
 
-- **Nunca commite segredos.** Chaves de API (`HONCHO_API_KEY`,
-  `MEM0_API_KEY`, `SUPERMEMORY_API_KEY`) vão apenas em `.env` local,
-  nunca no repositório.
-- `.env.example` deve conter **só chaves vazias** (modelo, sem valores).
-- `.env` está no `.gitignore` e não deve ser enviado em PRs.
-- Antes de abrir um PR, rode `python3 scripts/check_pr.py` (com `--fix`
-  se necessário) para detectar placeholders, URLs antigas e artefatos
-  acidentais (`__pycache__/`, `.env`).
+## Secret Handling Rules
 
-## Escopo
+- **Never commit secrets.** API keys (`HONCHO_API_KEY`, `MEM0_API_KEY`, `SUPERMEMORY_API_KEY`) belong only in local `.env`, never in the repository.
+- `.env.example` must contain **empty keys only** (template, no values).
+- `.env` is in `.gitignore` and must not be included in PRs.
+- Before opening a PR, run `python3 scripts/check_pr.py` (with `--fix` if needed) to catch placeholders, stale URLs, and accidental artifacts (`__pycache__/`, `.env`).
 
-- `scripts/sanitary_purge.py` grava **apenas** em diretórios locais do
-  usuário (`~/.ai-memory/wiki/`, `~/ObsidianVault/`, `~/.hermes/`) ou
-  conforme `VAULT_PATH`. Não há exfiltração de dados: os provedores
-  `honcho` / `mem0` / `supermemory` são **stubs experimentais** e não
-  realizam chamadas de rede nesta versão.
-- Dependências de runtime: apenas biblioteca padrão do Python 3.8+
-  (sem downloads automáticos). O wrapper Node (`bin/context-sanitary.js`)
-  apenas invoca `python3`/`python` local.
+## Scope
+
+- `scripts/sanitary_purge.py` writes **only** to local user directories (`~/.ai-memory/wiki/`, `~/ObsidianVault/`, `~/.hermes/`) or as configured via `VAULT_PATH`. No data exfiltration: the `honcho` / `mem0` / `supermemory` providers are **experimental stubs** and make no network calls in this version.
+- Runtime dependencies: Python 3.8+ standard library only (no auto-downloads). The Node wrapper (`bin/context-sanitary.js`) simply invokes local `python3` / `python`.

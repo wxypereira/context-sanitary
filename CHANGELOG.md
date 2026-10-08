@@ -3,6 +3,27 @@
 Todas as mudanças relevantes deste projeto são documentadas aqui, em formato
 [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
+## [0.2.0] — 2026-10-07
+
+Atualizações de documentação, segurança, internacionalização e ciclo de validação de instalação.
+
+### Adicionado
+- **SECURITY.md** reescrito em inglês: orienta abertura de **GitHub Issue** com template/label `security` / `vulnerability` em vez de contato privado; prazo de resposta de 5 dias úteis; creditação no CHANGELOG.
+- **README.md** totalmente em inglês (título, descrição, seções, instruções).
+- **Barra de navegação por idiomas** nos 3 READMEs (EN/PT/ES), posicionada logo abaixo do banner: `[English](README.md) | [Español](README.es-ES.md) | [Português](README.pt-BR.md)`.
+- **Créditos atualizados**: referência explícita ao modelo de IA **Gemini 2.5 Pro** (Google DeepMind), em vez de harness/interface.
+- **Ciclo de validação e limpeza** documentado para **cada método de instalação** (pip, pipx, npm/npx, clone manual como Skill): sequência obrigatória — Download/Instalação → Teste Prático → Validação → Remoção/Limpeza — garantindo isolamento entre métodos.
+
+### Alterado
+- `README.md`, `README.pt-BR.md`, `README.es-ES.md`: estrutura unificada com navegação por idiomas, seções traduzidas, tabela de memórias, resultados de testes, e blocos de instalação com ciclo completo (instalar → testar → validar → limpar).
+- `SECURITY.md`: política agora em inglês, uso de Issue GitHub com tag de segurança, sem e-mail/contato privado.
+- Créditos em todos os READMEs: **Modelo de IA: Gemini 2.5 Pro** (Google DeepMind).
+
+### Segurança
+- `SECURITY.md` orienta Issue pública com label `security`/`vulnerability`; mantém regras de segredos (`.env.example` vazio, `.env` no `.gitignore`, `check_pr.py` pré-PR).
+
+---
+
 ## [0.1.0] — 2026-10-07
 
 Sessão de Pair Programming (Antigravity + OpenCode / Muse Spark 1.3).
