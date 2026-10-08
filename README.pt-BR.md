@@ -81,60 +81,47 @@ $ python3 scripts/sanitary_purge.py --test-memory
 
 ### Opção A: Instalação via `pip` (Python Standard)
 
-**1. Download / Instalação**
+**1. Instalar**
 ```bash
 pip install git+https://github.com/wxypereira/context-sanitary.git
 # Ou instalação local editável
 pip install -e .
 ```
 
-**2. Teste Prático da SKILL**
+**2. Testar**
 ```bash
 context-sanitary --test-checkpoint
 ```
 
-**3. Validação do Resultado**
-```bash
-context-sanitary --test-memory --memory all
-# Esperado: todos os 6 provedores listados (3 nativos OK, 3 stubs pendentes de chaves)
-```
-
-**4. Remoção / Limpeza do Pacote**
+**3. Desinstalar**
 ```bash
 pip uninstall context-sanitary
-# Remove os entry points CLI (context-sanitary, sanitary-purge)
 ```
 
 ---
 
 ### Opção B: Instalação via `pipx` (Recomendado para CLI Isolado)
 
-**1. Download / Instalação**
+**1. Instalar**
 ```bash
 pipx install git+https://github.com/wxypereira/context-sanitary.git
 ```
 
-**2. Teste Prático da SKILL**
+**2. Testar**
 ```bash
 context-sanitary --test-checkpoint
 ```
 
-**3. Validação do Resultado**
-```bash
-context-sanitary --test-memory --memory all
-```
-
-**4. Remoção / Limpeza do Pacote**
+**3. Desinstalar**
 ```bash
 pipx uninstall context-sanitary
-# Remove completamente o ambiente isolado e os binários CLI
 ```
 
 ---
 
 ### Opção C: Instalação via `npm` / `npx` (Node.js)
 
-**1. Download / Instalação**
+**1. Instalar**
 ```bash
 # Instalação global via npm
 npm install -g context-sanitary
@@ -143,47 +130,35 @@ npm install -g context-sanitary
 npx context-sanitary --test-checkpoint
 ```
 
-**2. Teste Prático da SKILL**
+**2. Testar**
 ```bash
 npx context-sanitary --test-checkpoint
 ```
 
-**3. Validação do Resultado**
-```bash
-npx context-sanitary --test-memory --memory all
-```
-
-**4. Remoção / Limpeza do Pacote**
+**3. Desinstalar**
 ```bash
 npm uninstall -g context-sanitary
-# Remove o pacote global e os links dos binários
 ```
 
 ---
 
 ### Opção D: Instalação como Skill de Agente (`.gemini` / `Antigravity` / `Claude`)
 
-**1. Download / Instalação**
+**1. Instalar**
 ```bash
 git clone https://github.com/wxypereira/context-sanitary.git
 cp -r context-sanitary ~/.gemini/config/skills/
 ```
 
-**2. Teste Prático da SKILL**
+**2. Testar**
 ```bash
 # Dentro de uma conversa com o agente:
 /context-sanitary --test-checkpoint
 ```
 
-**3. Validação do Resultado**
-```bash
-/context-sanitary --test-memory --memory all
-```
-
-**4. Remoção / Limpeza da SKILL**
+**3. Desinstalar**
 ```bash
 rm -rf ~/.gemini/config/skills/context-sanitary
-# Remove o diretório da skill da configuração do agente
 ```
 
 ---
@@ -222,10 +197,10 @@ Contribuições são super bem-vindas! Siga os passos abaixo:
 
 ## 👥 Créditos & Agradecimentos
 
-Este projeto foi desenvolvido em Pair Programming com colaboração entre:
+Este projeto foi desenvolvido com o suporte de:
 - **Antigravity** (Google DeepMind Team)
 - **OpenCode** (Muse Spark 1.3 Zen Agent)
-- **Modelo de IA:** **Gemini 2.5 Pro** (Google DeepMind)
+- **Modelos de IA:** **Gemini 3.6** & **Muse Spark 1.3** (Google DeepMind)
 
 ---
 

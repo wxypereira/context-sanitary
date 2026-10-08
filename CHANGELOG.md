@@ -3,6 +3,26 @@
 Todas as mudanças relevantes deste projeto são documentadas aqui, em formato
 [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0/).
 
+## [0.3.0] — 2026-10-07
+
+Atualização de créditos, simplificação do fluxo de instalação, descrição do projeto e validação local.
+
+### Adicionado
+- **Créditos atualizados** em todos os READMEs (EN/PT/ES): menção explícita aos modelos **Gemini 3.6** & **Muse Spark 1.3** (Google DeepMind).
+- **Fluxo de instalação simplificado** para 3 etapas em todos os métodos (pip, pipx, npm/npx, clone manual): **Instalar → Testar → Desinstalar** — removida etapa intermediária de validação explícita.
+- **DESCRIPTION.md** — descrição curta pronta para "About" do GitHub: "Context Garbage Collector & Persistent Memory Sync for AI Agents".
+- **DESCRIPTION.md** adicionado ao repositório.
+
+### Alterado
+- `README.md`, `README.pt-BR.md`, `README.es-ES.md`: seções de instalação reescritas para o fluxo de 3 etapas (Instalar → Testar → Desinstalar) em todos os 4 métodos (pip, pipx, npm/npx, clone manual como Skill).
+- Créditos em todos os READMEs: **Modelos de IA: Gemini 3.6** & **Muse Spark 1.3** (Google DeepMind).
+- `README.md` totalmente em inglês; `README.pt-BR.md` e `README.es-ES.md` com traduções correspondentes.
+
+### Segurança
+- Mantidas regras de segredos (`.env.example` vazio, `.env` no `.gitignore`, `check_pr.py` pré-PR).
+
+---
+
 ## [0.2.0] — 2026-10-07
 
 Atualizações de documentação, segurança, internacionalização e ciclo de validação de instalação.
