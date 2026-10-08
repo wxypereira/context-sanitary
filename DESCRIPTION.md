@@ -1,3 +1,0 @@
-Context Sanitary — Context Garbage Collector & Persistent Memory Sync for AI Agents
-
-A lightweight Skill that sanitizes LLM context windows by removing operational noise (terminal dumps, dead stack traces, navigation clutter), offloads learned lessons `[Error ➔ Cause ➔ Solution]` to persistent memory backends (Obsidian, Holographic Memory, ai-memory, Honcho, Mem0, Supermemory), and injects a strict Checkpoint divider forcing the agent to ignore prior history. Installable via pip, pipx, npm/npx, or as a drop-in agent Skill.

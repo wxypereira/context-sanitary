@@ -150,7 +150,9 @@ class MemoryManager:
         return results
 
     def _offload_obsidian(self, entry):
-        vault_path = os.getenv("VAULT_PATH", os.path.expanduser("~/ObsidianVault"))
+        vault_path = os.getenv("VAULT_PATH")
+        if not vault_path:
+            return "[Erro] VAULT_PATH não configurado no .env"
         knowledge_dir = os.path.join(vault_path, "Knowledge")
         os.makedirs(knowledge_dir, exist_ok=True)
         note_file = os.path.join(knowledge_dir, "AI_Lessons.md")
@@ -162,7 +164,9 @@ class MemoryManager:
         return f"Anexado à nota Obsidian {note_file}"
 
     def _query_obsidian(self, focus_files, query_text):
-        vault_path = os.getenv("VAULT_PATH", os.path.expanduser("~/ObsidianVault"))
+        vault_path = os.getenv("VAULT_PATH")
+        if not vault_path:
+            return []
         note_file = os.path.join(vault_path, "Knowledge", "AI_Lessons.md")
         if not os.path.exists(note_file): return []
         with open(note_file, "r", encoding="utf-8") as f:

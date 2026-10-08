@@ -77,6 +77,63 @@ $ python3 scripts/sanitary_purge.py --test-memory
 
 ---
 
+## 📁 Jerarquía de Carpetas
+
+```
+context-sanitary/
+├── bin/                    # Puntos de entrada del wrapper Node.js
+│   └── context-sanitary.js
+├── scripts/                # Scripts auxiliares en Python
+│   └── sanitary_purge.py   # Lógica principal: poda, checkpoint, offload/consulta de memoria
+├── references/             # Documentos de especificación
+│   ├── pipeline.md         # Especificación del pipeline en 3 etapas
+│   ├── checkpoint_spec.md  # Formato y reglas del Checkpoint
+│   └── memory_integration.md  # Guía de integración con proveedores de memoria
+├── tests/                  # Suite de pruebas (no incluida en el paquete distribuido)
+│   ├── evals/
+│   │   └── dataset.json    # Dataset de evaluación
+│   └── validate_sanitization.py  # Script de validación automatizada
+├── assets/                 # Assets estáticos (banner, logos)
+├── SKILL.md                # Manifiesto de la skill para agentes de IA
+├── .env.example            # Plantilla de variables de entorno (valores en blanco)
+├── .gitignore
+├── LICENSE
+├── CHANGELOG.md
+├── SECURITY.md
+├── package.json            # Configuración del paquete npm
+├── setup.py                # Configuración del paquete pip
+├── README.md               # Documentación en inglés
+├── README.pt-BR.md         # Documentación en portugués
+└── README.es-ES.md         # Documentación en español
+```
+
+---
+
+## 📦 Esquema del Payload de Salida Sanitizado
+
+La skill genera un payload JSON estandarizado para sistemas de memoria persistente (Obsidian, Mem0, Supermemory, Honcho, etc.):
+
+```json
+{
+  "sanitized_context": "Texto del contexto higienizado, sin ruidos ni datos sensibles.",
+  "metadata": {
+    "removed_items_count": 0,
+    "has_pii_detected": false,
+    "sanitization_level": "high|medium|low"
+  },
+  "persistent_facts": [
+    "Hechos o preferencias atemporales extraídos para persistencia a largo plazo"
+  ]
+}
+```
+
+**Campos:**
+- `sanitized_context` (string): El contexto podado, libre de ruido, listo para almacenamiento.
+- `metadata` (objeto): Información diagnóstica — cuenta de elementos removidos, bandera de detección de PII, nivel de agresividad de la sanitización.
+- `persistent_facts` (array de strings): Hechos/preferencias perennes extraídos para memoria a largo plazo.
+
+---
+
 ## 🚀 Instalación e Inicio Rápido
 
 ### Opción A: Instalación vía `pip` (Python Standard)
@@ -84,8 +141,14 @@ $ python3 scripts/sanitary_purge.py --test-memory
 **1. Instalar**
 ```bash
 pip install git+https://github.com/wxypereira/context-sanitary.git
-# O instalación local editable
+# O instalación local editable (clona repo completo incluyendo tests)
 pip install -e .
+```
+
+**Para uso en producción sin archivos de prueba:**
+```bash
+# Usando pip con subdirectory
+pip install git+https://github.com/wxypereira/context-sanitary.git#subdirectory=.
 ```
 
 **2. Probar**
@@ -107,6 +170,11 @@ pip uninstall context-sanitary
 pipx install git+https://github.com/wxypereira/context-sanitary.git
 ```
 
+**Para uso en producción sin archivos de prueba:**
+```bash
+pipx install git+https://github.com/wxypereira/context-sanitary.git#subdirectory=.
+```
+
 **2. Probar**
 ```bash
 context-sanitary --test-checkpoint
@@ -123,12 +191,14 @@ pipx uninstall context-sanitary
 
 **1. Instalar**
 ```bash
-# Instalación global vía npm
+# Instalación global vía npm (desde npm registry, excluye archivos de prueba)
 npm install -g context-sanitary
 
-# O ejecución directa sin instalación vía npx
+# O ejecución directa sin instalación vía npx (desde npm registry, excluye archivos de prueba)
 npx context-sanitary --test-checkpoint
 ```
+
+**Nota:** El paquete npm publica solo los archivos de distribución (excluye `tests/`, `scripts/__pycache__/`, etc.).
 
 **2. Probar**
 ```bash
@@ -144,19 +214,28 @@ npm uninstall -g context-sanitary
 
 ### Opción D: Instalación como Skill de Agente (`.gemini` / `Antigravity` / `Claude`)
 
-**1. Instalar**
+**1. Instalar (repo completo incluyendo tests):**
 ```bash
 git clone https://github.com/wxypereira/context-sanitary.git
 cp -r context-sanitary ~/.gemini/config/skills/
 ```
 
-**2. Probar**
+**2. Instalar (producción — excluye archivos de prueba):**
+```bash
+# Descarga solo la carpeta de la skill sin tests/evals
+git clone --depth=1 --filter=blob:none --sparse https://github.com/wxypereira/context-sanitary.git
+cd context-sanitary
+git sparse-checkout set --no-cone SKILL.md references scripts/sanitary_purge.py bin assets
+cp -r context-sanitary ~/.gemini/config/skills/
+```
+
+**3. Probar**
 ```bash
 # Dentro de un chat con el agente:
 /context-sanitary --test-checkpoint
 ```
 
-**3. Desinstalar**
+**4. Desinstalar**
 ```bash
 rm -rf ~/.gemini/config/skills/context-sanitary
 ```
@@ -196,10 +275,7 @@ Ejecute en su terminal o dentro de un chat con el agente:
 
 ## 👥 Créditos y Agradecimientos
 
-Desarrollado con el soporte de:
-- **Antigravity** (Google DeepMind Team)
-- **OpenCode** (Muse Spark 1.3 Zen Agent)
-- **Modelos de IA:** **Gemini 3.6** & **Muse Spark 1.3** (Google DeepMind)
+Desarrollado con el soporte de **Gemini 3.6 Flash**, alternando entre **Muse Spark 1.3** y **Nemotron 3 Super**.
 
 ---
 
