@@ -1,3 +1,0 @@
-[console_scripts]
-context-sanitary = sanitary_purge:main
-sanitary-purge = sanitary_purge:main
