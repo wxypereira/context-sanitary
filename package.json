@@ -1,0 +1,24 @@
+{
+  "name": "context-sanitary",
+  "version": "0.1.0",
+  "description": "Garbage Collector de contexto e sincronizador de memória persistente para Agentes de IA",
+  "main": "bin/context-sanitary.js",
+  "bin": {
+    "context-sanitary": "bin/context-sanitary.js",
+    "sanitary-purge": "bin/context-sanitary.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wxypereira/context-sanitary.git"
+  },
+  "keywords": [
+    "antigravity",
+    "opencode",
+    "context-sanitary",
+    "ai-agent",
+    "memory",
+    "garbage-collector"
+  ],
+  "author": "Antigravity & OpenCode",
+  "license": "MIT"
+}
